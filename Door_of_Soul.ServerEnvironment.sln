@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.ProxyServer.PhotonServer", "Door_of_Soul.ProxyServer.PhotonServer\Door_of_Soul.ProxyServer.PhotonServer.csproj", "{B0745BE7-CC0B-499A-B76C-1BB953F84572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.SceneServer.PhotonServer", "Door_of_Soul.SceneServer.PhotonServer\Door_of_Soul.SceneServer.PhotonServer.csproj", "{89401F41-759C-448D-BA50-BDE68006C65D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.HexagramEntranceServer.PhotonServer", "Door_of_Soul.HexagramEntranceServer.PhotonServer\Door_of_Soul.HexagramEntranceServer.PhotonServer.csproj", "{7FEEE637-3C46-403D-839A-8FF31938E87A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.HexagramCentralServer.PhotonServer", "Door_of_Soul.HexagramCentralServer.PhotonServer\Door_of_Soul.HexagramCentralServer.PhotonServer.csproj", "{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0745BE7-CC0B-499A-B76C-1BB953F84572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0745BE7-CC0B-499A-B76C-1BB953F84572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0745BE7-CC0B-499A-B76C-1BB953F84572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0745BE7-CC0B-499A-B76C-1BB953F84572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89401F41-759C-448D-BA50-BDE68006C65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89401F41-759C-448D-BA50-BDE68006C65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89401F41-759C-448D-BA50-BDE68006C65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89401F41-759C-448D-BA50-BDE68006C65D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FEEE637-3C46-403D-839A-8FF31938E87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FEEE637-3C46-403D-839A-8FF31938E87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FEEE637-3C46-403D-839A-8FF31938E87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FEEE637-3C46-403D-839A-8FF31938E87A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
