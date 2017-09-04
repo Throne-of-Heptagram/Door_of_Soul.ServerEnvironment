@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.ProxyServer.PhotonServer", "Door_of_Soul.ProxyServer.PhotonServer\Door_of_Soul.ProxyServer.PhotonServer.csproj", "{B0745BE7-CC0B-499A-B76C-1BB953F84572}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.HexagramEntranceServer.PhotonServer", "Door_of_Soul.HexagramEntranceServer.PhotonServer\Door_of_Soul.HexagramEntranceServer.PhotonServer.csproj", "{7FEEE637-3C46-403D-839A-8FF31938E87A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.HexagramCentralServer.PhotonServer", "Door_of_Soul.HexagramCentralServer.PhotonServer\Door_of_Soul.HexagramCentralServer.PhotonServer.csproj", "{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.ServerEnvironment", "Door_of_Soul.ServerEnvironment\Door_of_Soul.ServerEnvironment.csproj", "{E0D22157-3563-41F4-A81D-3937BAF79859}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB79EBEA-C38C-48CD-AE48-E0B264C456DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D22157-3563-41F4-A81D-3937BAF79859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D22157-3563-41F4-A81D-3937BAF79859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D22157-3563-41F4-A81D-3937BAF79859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D22157-3563-41F4-A81D-3937BAF79859}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47B1F6FE-CC80-4244-9B48-89D50854E763}
 	EndGlobalSection
 EndGlobal

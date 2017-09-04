@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Door_of_Soul.ProxyServer.PhotonServer
+{
+    class ProxyServerEnvironment
+    {
+    }
+}
