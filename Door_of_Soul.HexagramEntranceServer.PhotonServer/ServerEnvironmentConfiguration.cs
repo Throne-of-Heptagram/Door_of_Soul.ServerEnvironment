@@ -3,7 +3,7 @@
     public class ServerEnvironmentConfiguration
     {
         public static ServerEnvironmentConfiguration Instance { get; private set; }
-        public static void Initial(ServerEnvironmentConfiguration instance)
+        public static void Initialize(ServerEnvironmentConfiguration instance)
         {
             Instance = instance;
         }
@@ -49,5 +49,7 @@
         public string EternityServerApplicationName { get; set; } = "Eternity";
         public string DestinyServerApplicationName { get; set; } = "Destiny";
         public string ThroneServerApplicationName { get; set; } = "Throne";
+
+        public int SetupConnectionDelay { get; set; } = 5000;
     }
 }

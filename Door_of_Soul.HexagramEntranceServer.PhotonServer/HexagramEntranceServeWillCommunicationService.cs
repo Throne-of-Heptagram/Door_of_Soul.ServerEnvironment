@@ -10,12 +10,12 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
     {
         public override bool ConnectServer(string serverAddress, int port, string applicationName)
         {
-            return HexagramEntranceServerApplication.WillPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName);
+            return HexagramEntranceServerEnvironment.WillPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName);
         }
 
         public override void DisconnectServer()
         {
-            HexagramEntranceServerApplication.WillPeer.Disconnect();
+            HexagramEntranceServerEnvironment.WillPeer.Disconnect();
         }
 
         public override void SendOperation(WillOperationCode operationCode, Dictionary<byte, object> parameters)
@@ -25,7 +25,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 OperationCode = (byte)operationCode,
                 Parameters = parameters
             };
-            HexagramEntranceServerApplication.WillPeer.SendOperationRequest(request, new SendParameters());
+            HexagramEntranceServerEnvironment.WillPeer.SendOperationRequest(request, new SendParameters());
         }
     }
 }

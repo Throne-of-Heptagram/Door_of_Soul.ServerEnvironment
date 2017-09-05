@@ -3,7 +3,7 @@
     public class ServerEnvironmentConfiguration
     {
         public static ServerEnvironmentConfiguration Instance { get; private set; }
-        public static void Initial(ServerEnvironmentConfiguration instance)
+        public static void Initialize(ServerEnvironmentConfiguration instance)
         {
             Instance = instance;
         }
@@ -14,6 +14,6 @@
 
         public string HexagramEntranceServerApplicationName { get; set; } = "HexagramEntrance";
 
-        public int SetupConnectionDelay { get; set; } = 5000;
+        public int SetupConnectionDelay { get; set; } = 10000;
     }
 }

@@ -14,6 +14,6 @@
 
         public string HexagramEntranceServerApplicationName { get; set; } = "HexagramEntrance";
 
-        public int SetupConnectionDelay { get; set; } = 5000;
+        public int SetupConnectionDelay { get; set; } = 10000;
     }
 }

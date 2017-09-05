@@ -51,6 +51,9 @@
     <Reference Include="Door_of_Soul.HexagramEntranceServer">
       <HintPath>..\ReferenceDlls\Door_of_Soul.HexagramEntranceServer.dll</HintPath>
     </Reference>
+    <Reference Include="Door_of_Soul.Server">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Server.dll</HintPath>
+    </Reference>
     <Reference Include="ExitGames.Logging.Log4Net">
       <HintPath>..\ReferenceDlls\ExitGames.Logging.Log4Net.dll</HintPath>
     </Reference>

@@ -30,6 +30,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Door_of_Soul.Communication">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.dll</HintPath>
+    </Reference>
+    <Reference Include="Door_of_Soul.Communication.HexagramCentralServer">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.HexagramCentralServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Door_of_Soul.Communication.Protocol.Hexagram">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.Protocol.Hexagram.dll</HintPath>
+    </Reference>
+    <Reference Include="Door_of_Soul.Core">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Door_of_Soul.Server">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="ExitGames.Logging.Log4Net">
+      <HintPath>..\ReferenceDlls\ExitGames.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ExitGamesLibs">
+      <HintPath>..\ReferenceDlls\ExitGamesLibs.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\ReferenceDlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon.SocketServer">
+      <HintPath>..\ReferenceDlls\Photon.SocketServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonHostRuntimeInterfaces">
+      <HintPath>..\ReferenceDlls\PhotonHostRuntimeInterfaces.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HexagramCentralServerApplication.cs" />
+    <Compile Include="HexagramCentralServerCommunicationService.cs" />
+    <Compile Include="HexagramCentralServerEnvironment.cs" />
+    <Compile Include="HexagramNodePeer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerEnvironmentConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Door_of_Soul.ServerEnvironment\Door_of_Soul.ServerEnvironment.csproj">
