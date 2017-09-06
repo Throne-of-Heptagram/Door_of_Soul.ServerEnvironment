@@ -6,7 +6,6 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
     public class ProxyServerApplication : ApplicationBase
     {
         public static readonly ILogger Log = LogManager.GetCurrentClassLogger();
-        public static ServerPeer ServerPeer { get; private set; }
 
         protected override PeerBase CreatePeer(InitRequest initRequest)
         {

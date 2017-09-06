@@ -50,6 +50,6 @@
         public string DestinyServerApplicationName { get; set; } = "Destiny";
         public string ThroneServerApplicationName { get; set; } = "Throne";
 
-        public int SetupConnectionDelay { get; set; } = 5000;
+        public int SetupConnectionDelay { get; set; } = 7500;
     }
 }
