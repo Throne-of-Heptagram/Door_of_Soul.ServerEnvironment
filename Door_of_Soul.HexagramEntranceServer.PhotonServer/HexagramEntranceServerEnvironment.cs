@@ -12,18 +12,18 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
 {
     class HexagramEntranceServerEnvironment : ServerEnvironment.ServerEnvironment
     {
-        public static ServerPeer KnowledgePeer { get; private set; }
-        public static ServerPeer LifePeer { get; private set; }
-        public static ServerPeer ElementPeer { get; private set; }
-        public static ServerPeer InfinitePeer { get; private set; }
-        public static ServerPeer LovePeer { get; private set; }
-        public static ServerPeer SpacePeer { get; private set; }
-        public static ServerPeer WillPeer { get; private set; }
-        public static ServerPeer ShadowPeer { get; private set; }
-        public static ServerPeer HistoryPeer { get; private set; }
-        public static ServerPeer EternityPeer { get; private set; }
-        public static ServerPeer DestinyPeer { get; private set; }
-        public static ServerPeer ThronePeer { get; private set; }
+        public static KnowledgePeer KnowledgePeer { get; private set; }
+        public static LifePeer LifePeer { get; private set; }
+        public static ElementPeer ElementPeer { get; private set; }
+        public static InfinitePeer InfinitePeer { get; private set; }
+        public static LovePeer LovePeer { get; private set; }
+        public static SpacePeer SpacePeer { get; private set; }
+        public static WillPeer WillPeer { get; private set; }
+        public static ShadowPeer ShadowPeer { get; private set; }
+        public static HistoryPeer HistoryPeer { get; private set; }
+        public static EternityPeer EternityPeer { get; private set; }
+        public static DestinyPeer DestinyPeer { get; private set; }
+        public static ThronePeer ThronePeer { get; private set; }
 
         public override bool SetupCommunication(out string errorMessage)
         {
@@ -41,18 +41,18 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
             DestinyCommunicationService.Initialize(new HexagramEntranceServerDestinyCommunicationService());
             ThroneCommunicationService.Initialize(new HexagramEntranceServerThroneCommunicationService());
 
-            KnowledgePeer = new ServerPeer(ApplicationBase.Instance);
-            LifePeer = new ServerPeer(ApplicationBase.Instance);
-            ElementPeer = new ServerPeer(ApplicationBase.Instance);
-            InfinitePeer = new ServerPeer(ApplicationBase.Instance);
-            LovePeer = new ServerPeer(ApplicationBase.Instance);
-            SpacePeer = new ServerPeer(ApplicationBase.Instance);
-            WillPeer = new ServerPeer(ApplicationBase.Instance);
-            ShadowPeer = new ServerPeer(ApplicationBase.Instance);
-            HistoryPeer = new ServerPeer(ApplicationBase.Instance);
-            EternityPeer = new ServerPeer(ApplicationBase.Instance);
-            DestinyPeer = new ServerPeer(ApplicationBase.Instance);
-            ThronePeer = new ServerPeer(ApplicationBase.Instance);
+            KnowledgePeer = new KnowledgePeer(ApplicationBase.Instance);
+            LifePeer = new LifePeer(ApplicationBase.Instance);
+            ElementPeer = new ElementPeer(ApplicationBase.Instance);
+            InfinitePeer = new InfinitePeer(ApplicationBase.Instance);
+            LovePeer = new LovePeer(ApplicationBase.Instance);
+            SpacePeer = new SpacePeer(ApplicationBase.Instance);
+            WillPeer = new WillPeer(ApplicationBase.Instance);
+            ShadowPeer = new ShadowPeer(ApplicationBase.Instance);
+            HistoryPeer = new HistoryPeer(ApplicationBase.Instance);
+            EternityPeer = new EternityPeer(ApplicationBase.Instance);
+            DestinyPeer = new DestinyPeer(ApplicationBase.Instance);
+            ThronePeer = new ThronePeer(ApplicationBase.Instance);
 
             Thread.Sleep(ServerEnvironmentConfiguration.Instance.SetupConnectionDelay);
 

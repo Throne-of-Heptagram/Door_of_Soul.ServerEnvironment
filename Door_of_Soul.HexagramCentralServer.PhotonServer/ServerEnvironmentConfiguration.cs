@@ -8,17 +8,17 @@
             Instance = instance;
         }
 
-        public int HexagramKnowledgeServerListenPort { get; set; } = 10016;
-        public int HexagramLifeServerListenPort { get; set; } = 10017;
-        public int HexagramElementServerListenPort { get; set; } = 10018;
-        public int HexagramInfiniteServerListenPort { get; set; } = 10019;
-        public int HexagramLoveServerListenPort { get; set; } = 10020;
-        public int HexagramSpaceServerListenPort { get; set; } = 10021;
-        public int HexagramWillServerListenPort { get; set; } = 10022;
-        public int HexagramShadowServerListenPort { get; set; } = 10023;
-        public int HexagramHistoryServerListenPort { get; set; } = 10024;
-        public int HexagramEternityServerListenPort { get; set; } = 10025;
-        public int HexagramDestinyServerListenPort { get; set; } = 10026;
-        public int HexagramThroneServerListenPort { get; set; } = 10027;
+        public int HexagramKnowledgeServerListenPort { get; set; } = 10001;
+        public int HexagramLifeServerListenPort { get; set; } = 10002;
+        public int HexagramElementServerListenPort { get; set; } = 10003;
+        public int HexagramInfiniteServerListenPort { get; set; } = 10004;
+        public int HexagramLoveServerListenPort { get; set; } = 10005;
+        public int HexagramSpaceServerListenPort { get; set; } = 10006;
+        public int HexagramWillServerListenPort { get; set; } = 10007;
+        public int HexagramShadowServerListenPort { get; set; } = 10008;
+        public int HexagramHistoryServerListenPort { get; set; } = 10009;
+        public int HexagramEternityServerListenPort { get; set; } = 10010;
+        public int HexagramDestinyServerListenPort { get; set; } = 10011;
+        public int HexagramThroneServerListenPort { get; set; } = 10012;
     }
 }

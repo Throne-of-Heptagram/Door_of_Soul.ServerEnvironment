@@ -80,6 +80,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DestinyPeer.cs" />
+    <Compile Include="ElementPeer.cs" />
+    <Compile Include="EternityPeer.cs" />
     <Compile Include="HexagramEntrancePeer.cs" />
     <Compile Include="HexagramEntranceServeElementCommunicationService.cs" />
     <Compile Include="HexagramEntranceServerApplication.cs" />
@@ -96,9 +99,17 @@
     <Compile Include="HexagramEntranceServerThroneCommunicationService.cs" />
     <Compile Include="HexagramEntranceServeShadowCommunicationService.cs" />
     <Compile Include="HexagramEntranceServeWillCommunicationService.cs" />
+    <Compile Include="HistoryPeer.cs" />
+    <Compile Include="InfinitePeer.cs" />
+    <Compile Include="KnowledgePeer.cs" />
+    <Compile Include="LifePeer.cs" />
+    <Compile Include="LovePeer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEnvironmentConfiguration.cs" />
-    <Compile Include="ServerPeer.cs" />
+    <Compile Include="ShadowPeer.cs" />
+    <Compile Include="SpacePeer.cs" />
+    <Compile Include="ThronePeer.cs" />
+    <Compile Include="WillPeer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Door_of_Soul.ServerEnvironment\Door_of_Soul.ServerEnvironment.csproj">

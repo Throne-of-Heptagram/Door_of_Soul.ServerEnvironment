@@ -10,7 +10,7 @@
 
         public string HexagramCentralServerAddress { get; set; } = "127.0.0.1";
 
-        public int HexagramCentralServerPort { get; set; } = 10020;
+        public int HexagramCentralServerPort { get; set; } = 10005;
 
         public string HexagramCentralServerApplicationName { get; set; } = "HexagramCentral";
 

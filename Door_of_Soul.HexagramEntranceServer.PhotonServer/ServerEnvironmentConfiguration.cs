@@ -8,8 +8,8 @@
             Instance = instance;
         }
 
-        public int ProxyServerListenPort { get; set; } = 10002;
-        public int SceneServerListenPort { get; set; } = 10003;
+        public int ProxyServerListenPort { get; set; } = 10025;
+        public int SceneServerListenPort { get; set; } = 10026;
 
         public string KnowledgeServerAddress { get; set; } = "127.0.0.1";
         public string LifeServerAddress { get; set; } = "127.0.0.1";
@@ -24,18 +24,18 @@
         public string DestinyServerAddress { get; set; } = "127.0.0.1";
         public string ThroneServerAddress { get; set; } = "127.0.0.1";
 
-        public int KnowledgeServerPort { get; set; } = 10004;
-        public int LifeServerPort { get; set; } = 10005;
-        public int ElementServerPort { get; set; } = 10006;
-        public int InfiniteServerPort { get; set; } = 10007;
-        public int LoveServerPort { get; set; } = 10008;
-        public int SpaceServerPort { get; set; } = 10009;
-        public int WillServerPort { get; set; } = 100010;
-        public int ShadowServerPort { get; set; } = 10011;
-        public int HistoryServerPort { get; set; } = 10012;
-        public int EternityServerPort { get; set; } = 10013;
-        public int DestinyServerPort { get; set; } = 100014;
-        public int ThroneServerPort { get; set; } = 100015;
+        public int KnowledgeServerPort { get; set; } = 10001;
+        public int LifeServerPort { get; set; } = 10002;
+        public int ElementServerPort { get; set; } = 10003;
+        public int InfiniteServerPort { get; set; } = 10004;
+        public int LoveServerPort { get; set; } = 10005;
+        public int SpaceServerPort { get; set; } = 10006;
+        public int WillServerPort { get; set; } = 10007;
+        public int ShadowServerPort { get; set; } = 1008;
+        public int HistoryServerPort { get; set; } = 1009;
+        public int EternityServerPort { get; set; } = 10010;
+        public int DestinyServerPort { get; set; } = 100011;
+        public int ThroneServerPort { get; set; } = 100012;
 
         public string KnowledgeServerApplicationName { get; set; } = "Knowledge";
         public string LifeServerApplicationName { get; set; } = "Life";
