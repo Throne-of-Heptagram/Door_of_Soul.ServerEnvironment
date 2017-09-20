@@ -18,6 +18,10 @@
             {
                 return false;
             }
+            if (!SetupDatabase(out errorMessage))
+            {
+                return false;
+            }
             if (!SetupCommunication(out errorMessage))
             {
                 return false;
@@ -32,6 +36,7 @@
 
         public abstract bool SetupLog(out string errorMessage);
         public abstract bool SetupConfiguration(out string errorMessage);
+        public abstract bool SetupDatabase(out string errorMessage);
         public abstract bool SetupCommunication(out string errorMessage);
         public abstract bool SetupServer(out string errorMessage);
     }

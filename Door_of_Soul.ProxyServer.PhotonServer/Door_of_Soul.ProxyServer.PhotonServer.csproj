@@ -53,6 +53,15 @@
     <Reference Include="Door_of_Soul.Core.ProxyServer">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Core.ProxyServer.dll</HintPath>
     </Reference>
+    <Reference Include="Door_of_Soul.Database">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Door_of_Soul.Database.DataStructure">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Database.DataStructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Door_of_Soul.Database.MariaDb">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Database.MariaDb.dll</HintPath>
+    </Reference>
     <Reference Include="Door_of_Soul.ProxyServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceDlls\Door_of_Soul.ProxyServer.dll</HintPath>
@@ -71,6 +80,10 @@
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceDlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDlls\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Photon.SocketServer, Version=4.0.28.11245, Culture=neutral, PublicKeyToken=48c2fa3b6988090e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

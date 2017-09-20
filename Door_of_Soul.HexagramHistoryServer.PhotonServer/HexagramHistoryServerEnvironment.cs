@@ -92,5 +92,11 @@ namespace Door_of_Soul.HexagramHistoryServer.PhotonServer
         {
             HexagramHistoryServerApplication.Log.Info($"Entrance: {entrance} connected");
         }
+
+        public override bool SetupDatabase(out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
+        }
     }
 }

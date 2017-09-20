@@ -1,5 +1,6 @@
 ﻿using Door_of_Soul.Communication.HexagramNodeServer;
 using Door_of_Soul.Communication.Protocol.Hexagram.Throne;
+using Door_of_Soul.Core.HexagramNodeServer;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
@@ -37,7 +38,7 @@ namespace Door_of_Soul.HexagramThroneServer.PhotonServer
             Dictionary<byte, object> parameters = operationRequest.Parameters;
 
             string errorMessage;
-            if (!EntranceCommunicationService<ThroneEventCode, ThroneOperationCode>.Instance.HandleOperationRequest(Entrance, operationCode, parameters, out errorMessage))
+            if (!EntranceCommunicationService<ThroneEventCode, ThroneOperationCode, VirtualThrone>.Instance.HandleOperationRequest(Entrance, VirtualThrone.Instance, operationCode, parameters, out errorMessage))
             {
                 HexagramThroneServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
             }

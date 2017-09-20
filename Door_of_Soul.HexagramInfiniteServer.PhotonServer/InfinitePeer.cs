@@ -1,5 +1,6 @@
 ﻿using Door_of_Soul.Communication.HexagramNodeServer;
 using Door_of_Soul.Communication.Protocol.Hexagram.Infinite;
+using Door_of_Soul.Core.HexagramNodeServer;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
@@ -37,7 +38,7 @@ namespace Door_of_Soul.HexagramInfiniteServer.PhotonServer
             Dictionary<byte, object> parameters = operationRequest.Parameters;
 
             string errorMessage;
-            if (!EntranceCommunicationService<InfiniteEventCode, InfiniteOperationCode>.Instance.HandleOperationRequest(Entrance, operationCode, parameters, out errorMessage))
+            if (!EntranceCommunicationService<InfiniteEventCode, InfiniteOperationCode, VirtualInfinite>.Instance.HandleOperationRequest(Entrance, VirtualInfinite.Instance, operationCode, parameters, out errorMessage))
             {
                 HexagramInfiniteServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
             }

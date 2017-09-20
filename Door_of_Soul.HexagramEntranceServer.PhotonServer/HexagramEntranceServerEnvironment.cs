@@ -216,5 +216,11 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
         {
             HexagramEntranceServerApplication.Log.Info($"EndPoint: {endPoint} connected");
         }
+
+        public override bool SetupDatabase(out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
+        }
     }
 }

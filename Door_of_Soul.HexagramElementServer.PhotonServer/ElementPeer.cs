@@ -1,11 +1,13 @@
 ﻿using Door_of_Soul.Communication.HexagramNodeServer;
 using Door_of_Soul.Communication.Protocol.Hexagram.Element;
+using Door_of_Soul.Core.HexagramNodeServer;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
 using PhotonHostRuntimeInterfaces;
 using System;
 using System.Collections.Generic;
+
 namespace Door_of_Soul.HexagramElementServer.PhotonServer
 {
     public class ElementPeer : InboundS2SPeer
@@ -36,7 +38,7 @@ namespace Door_of_Soul.HexagramElementServer.PhotonServer
             Dictionary<byte, object> parameters = operationRequest.Parameters;
 
             string errorMessage;
-            if (!EntranceCommunicationService<ElementEventCode, ElementOperationCode>.Instance.HandleOperationRequest(Entrance, operationCode, parameters, out errorMessage))
+            if (!EntranceCommunicationService<ElementEventCode, ElementOperationCode, VirtualElement>.Instance.HandleOperationRequest(Entrance, VirtualElement.Instance, operationCode, parameters, out errorMessage))
             {
                 HexagramElementServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
             }

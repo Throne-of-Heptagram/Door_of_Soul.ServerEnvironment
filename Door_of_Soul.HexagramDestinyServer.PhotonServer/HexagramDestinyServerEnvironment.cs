@@ -93,5 +93,11 @@ namespace Door_of_Soul.HexagramDestinyServer.PhotonServer
         {
             HexagramDestinyServerApplication.Log.Info($"Entrance: {entrance} connected");
         }
+
+        public override bool SetupDatabase(out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
+        }
     }
 }

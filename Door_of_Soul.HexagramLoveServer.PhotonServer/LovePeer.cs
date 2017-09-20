@@ -1,5 +1,6 @@
 ﻿using Door_of_Soul.Communication.HexagramNodeServer;
 using Door_of_Soul.Communication.Protocol.Hexagram.Love;
+using Door_of_Soul.Core.HexagramNodeServer;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
@@ -37,7 +38,7 @@ namespace Door_of_Soul.HexagramLoveServer.PhotonServer
             Dictionary<byte, object> parameters = operationRequest.Parameters;
 
             string errorMessage;
-            if (!EntranceCommunicationService<LoveEventCode, LoveOperationCode>.Instance.HandleOperationRequest(Entrance, operationCode, parameters, out errorMessage))
+            if (!EntranceCommunicationService<LoveEventCode, LoveOperationCode, VirtualLove>.Instance.HandleOperationRequest(Entrance, VirtualLove.Instance, operationCode, parameters, out errorMessage))
             {
                 HexagramLoveServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
             }

@@ -74,5 +74,11 @@ namespace Door_of_Soul.HexagramCentralServer.PhotonServer
         {
 
         }
+
+        public override bool SetupDatabase(out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
+        }
     }
 }

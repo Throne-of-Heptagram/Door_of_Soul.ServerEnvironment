@@ -1,9 +1,16 @@
 ﻿using Door_of_Soul.Communication.HexagramNodeServer;
 using Door_of_Soul.Core;
+using Door_of_Soul.Database.Connection;
+using Door_of_Soul.Database.MariaDb.Connection;
+using Door_of_Soul.Database.MariaDb.Relation;
+using Door_of_Soul.Database.MariaDb.Repository;
+using Door_of_Soul.Database.Relation;
+using Door_of_Soul.Database.Repository;
 using Door_of_Soul.Server;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
 using log4net.Config;
+using MySql.Data.MySqlClient;
 using Photon.SocketServer;
 using System.IO;
 using System.Threading;
@@ -91,6 +98,39 @@ namespace Door_of_Soul.HexagramWillServer.PhotonServer
         private void LogEntranceConnected(WillHexagramEntrance entrance)
         {
             HexagramWillServerApplication.Log.Info($"Entrance: {entrance} connected");
+        }
+
+        public override bool SetupDatabase(out string errorMessage)
+        {
+            WillDataConnection<MySqlConnection>.Initialize(new MariaDbWillDataConnection());
+            LoveDataConnection<MySqlConnection>.Initialize(new MariaDbLoveDataConnection());
+
+            AnswerRepository.Initialize(new MariaDbAnswerRepository());
+            TrinityRelation.Initialize(new MariaDbTrinityRelation());
+
+            if (!WillDataConnection<MySqlConnection>.Instance.Connect(
+                serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
+                port: ServerEnvironmentConfiguration.Instance.DatabasePort,
+                username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,
+                password: ServerEnvironmentConfiguration.Instance.DatabasePassword,
+                databasePrefix: ServerEnvironmentConfiguration.Instance.DatabasePrefix,
+                charset: ServerEnvironmentConfiguration.Instance.DatabaseCharset,
+                errorMessage: out errorMessage))
+            {
+                return false;
+            }
+            if (!LoveDataConnection<MySqlConnection>.Instance.Connect(
+                serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
+                port: ServerEnvironmentConfiguration.Instance.DatabasePort,
+                username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,
+                password: ServerEnvironmentConfiguration.Instance.DatabasePassword,
+                databasePrefix: ServerEnvironmentConfiguration.Instance.DatabasePrefix,
+                charset: ServerEnvironmentConfiguration.Instance.DatabaseCharset,
+                errorMessage: out errorMessage))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

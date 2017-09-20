@@ -92,5 +92,11 @@ namespace Door_of_Soul.SceneServer.PhotonServer
         {
             SceneServerApplication.Log.Info($"Device: {device} connected");
         }
+
+        public override bool SetupDatabase(out string errorMessage)
+        {
+            errorMessage = "";
+            return true;
+        }
     }
 }
