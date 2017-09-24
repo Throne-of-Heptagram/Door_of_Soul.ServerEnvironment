@@ -1,24 +1,24 @@
 ﻿using ExitGames.Logging;
 using Photon.SocketServer;
 
-namespace Door_of_Soul.ProxyServer.PhotonServer
+namespace Door_of_Soul.LoginServer.PhotonServer
 {
-    public class ProxyServerApplication : ApplicationBase
+    public class LoginServerApplication : ApplicationBase
     {
         public static readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
         protected override PeerBase CreatePeer(InitRequest initRequest)
         {
-            return new ProxyPeer(initRequest);
+            return new LoginPeer(initRequest);
         }
 
         protected override void Setup()
         {
-            ServerEnvironment.ServerEnvironment.Initialize(new ProxyServerEnvironment());
+            ServerEnvironment.ServerEnvironment.Initialize(new LoginServerEnvironment());
             string errorMessage;
             if (ServerEnvironment.ServerEnvironment.Instance.Setup(out errorMessage))
             {
-                Log.Info("ProxyServerApplication Setup.");
+                Log.Info("LoginServerApplication Setup.");
             }
             else
             {

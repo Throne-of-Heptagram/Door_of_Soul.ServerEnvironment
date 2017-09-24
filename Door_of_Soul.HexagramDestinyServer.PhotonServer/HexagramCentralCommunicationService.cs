@@ -1,5 +1,5 @@
 ﻿using Door_of_Soul.Communication.HexagramNodeServer;
-using Door_of_Soul.Communication.Protocol.Hexagram.Hexagram;
+using Door_of_Soul.Communication.Protocol.Hexagram.HexagramCentral;
 using Photon.SocketServer;
 using System.Collections.Generic;
 using System.Net;

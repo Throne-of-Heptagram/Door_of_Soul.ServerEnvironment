@@ -13,7 +13,5 @@
         public int HexagramCentralServerPort { get; set; } = 10003;
 
         public string HexagramCentralServerApplicationName { get; set; } = "HexagramCentral";
-
-        public int SetupConnectionDelay { get; set; } = 1500;
     }
 }

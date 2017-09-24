@@ -13,7 +13,6 @@ using log4net.Config;
 using MySql.Data.MySqlClient;
 using Photon.SocketServer;
 using System.IO;
-using System.Threading;
 
 namespace Door_of_Soul.HexagramWillServer.PhotonServer
 {
@@ -26,7 +25,6 @@ namespace Door_of_Soul.HexagramWillServer.PhotonServer
             CentralCommunicationService.Initialize(new HexagramCentralCommunicationService());
 
             CentralPeer = new CentralPeer(ApplicationBase.Instance);
-            Thread.Sleep(ServerEnvironmentConfiguration.Instance.SetupConnectionDelay);
             if (!CentralCommunicationService.Instance.ConnectHexagrameCentralServer(
                 serverAddress: ServerEnvironmentConfiguration.Instance.HexagramCentralServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HexagramCentralServerPort,

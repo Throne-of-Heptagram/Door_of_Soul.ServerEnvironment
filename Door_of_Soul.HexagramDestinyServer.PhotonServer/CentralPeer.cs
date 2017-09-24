@@ -4,6 +4,7 @@ using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
 using PhotonHostRuntimeInterfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Door_of_Soul.HexagramDestinyServer.PhotonServer
 {
@@ -11,6 +12,7 @@ namespace Door_of_Soul.HexagramDestinyServer.PhotonServer
     {
         public CentralPeer(ApplicationBase application) : base(application)
         {
+
         }
 
         protected override void OnConnectionEstablished(object responseObject)
@@ -26,6 +28,12 @@ namespace Door_of_Soul.HexagramDestinyServer.PhotonServer
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
             HexagramDestinyServerApplication.Log.Info($"Server Disconnect");
+            Task.Run(async() => 
+            {
+                await Task.Delay(10000);
+                string errorMessage;
+                ServerEnvironment.ServerEnvironment.Instance.SetupCommunication(out errorMessage);
+            });
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)

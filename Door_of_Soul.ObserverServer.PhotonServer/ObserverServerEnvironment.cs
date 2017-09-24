@@ -1,30 +1,23 @@
-﻿using Door_of_Soul.Communication.ProxyServer;
+﻿using Door_of_Soul.Communication.ObserverServer;
 using Door_of_Soul.Core;
-using Door_of_Soul.Database.Connection;
-using Door_of_Soul.Database.MariaDb.Connection;
-using Door_of_Soul.Database.MariaDb.Repository;
-using Door_of_Soul.Database.Repository;
 using Door_of_Soul.Server;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
 using log4net.Config;
-using MySql.Data.MySqlClient;
 using Photon.SocketServer;
 using System.IO;
-using System.Threading;
 
-namespace Door_of_Soul.ProxyServer.PhotonServer
+namespace Door_of_Soul.ObserverServer.PhotonServer
 {
-    class ProxyServerEnvironment : ServerEnvironment.ServerEnvironment
+    class ObserverServerEnvironment : ServerEnvironment.ServerEnvironment
     {
         public static ServerPeer ServerPeer { get; private set; }
 
         public override bool SetupCommunication(out string errorMessage)
         {
-            CommunicationService.Initialize(new ProxyServerCommunicationService());
+            CommunicationService.Initialize(new ObserverServerCommunicationService());
 
             ServerPeer = new ServerPeer(ApplicationBase.Instance);
-            Thread.Sleep(ServerEnvironmentConfiguration.Instance.SetupConnectionDelay);
             if (!CommunicationService.Instance.ConnectHexagrameEntranceServer(
                 serverAddress: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerPort,
@@ -78,7 +71,7 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
 
         public override bool SetupServer(out string errorMessage)
         {
-            ServerInitializer.Initialize(new ProxyServerInitializer());
+            ServerInitializer.Initialize(new ObserverServerInitializer());
             return ServerInitializer.Instance.Initialize(out errorMessage);
         }
 
@@ -90,28 +83,18 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
 
         private void LogDeviceDisconnected(TerminalDevice device)
         {
-            ProxyServerApplication.Log.Info($"Device: {device} disconnected");
+            ObserverServerApplication.Log.Info($"Device: {device} disconnected");
         }
 
         private void LogDeviceConnected(TerminalDevice device)
         {
-            ProxyServerApplication.Log.Info($"Device: {device} connected");
+            ObserverServerApplication.Log.Info($"Device: {device} connected");
         }
 
         public override bool SetupDatabase(out string errorMessage)
         {
-            ThroneDataConnection<MySqlConnection>.Initialize(new MariaDbThroneDataConnection());
-
-            AnswerRepository.Initialize(new MariaDbAnswerRepository());
-
-            return ThroneDataConnection<MySqlConnection>.Instance.Connect(
-                serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.DatabasePort,
-                username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,
-                password: ServerEnvironmentConfiguration.Instance.DatabasePassword,
-                databasePrefix: ServerEnvironmentConfiguration.Instance.DatabasePrefix,
-                charset: ServerEnvironmentConfiguration.Instance.DatabaseCharset,
-                errorMessage: out errorMessage);
+            errorMessage = "";
+            return true;
         }
     }
 }

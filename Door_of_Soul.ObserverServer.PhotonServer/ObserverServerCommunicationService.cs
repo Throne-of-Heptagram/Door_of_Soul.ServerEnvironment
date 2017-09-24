@@ -1,21 +1,21 @@
-﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
-using Door_of_Soul.Communication.SceneServer;
+﻿using Door_of_Soul.Communication.ObserverServer;
+using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Photon.SocketServer;
 using System.Collections.Generic;
 using System.Net;
 
-namespace Door_of_Soul.SceneServer.PhotonServer
+namespace Door_of_Soul.ObserverServer.PhotonServer
 {
-    class SceneServerCommunicationService : CommunicationService
+    class ObserverServerCommunicationService : CommunicationService
     {
         public override bool ConnectHexagrameEntranceServer(string serverAddress, int port, string applicationName)
         {
-            return SceneServerEnvironment.ServerPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName);
+            return ObserverServerEnvironment.ServerPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName);
         }
 
         public override void DisconnectHexagrameEntranceServer()
         {
-            SceneServerEnvironment.ServerPeer.Disconnect();
+            ObserverServerEnvironment.ServerPeer.Disconnect();
         }
 
         public override void SendOperation(EndPointOperationCode operationCode, Dictionary<byte, object> parameters)
@@ -25,7 +25,7 @@ namespace Door_of_Soul.SceneServer.PhotonServer
                 OperationCode = (byte)operationCode,
                 Parameters = parameters
             };
-            SceneServerEnvironment.ServerPeer.SendOperationRequest(request, new SendParameters());
+            ObserverServerEnvironment.ServerPeer.SendOperationRequest(request, new SendParameters());
         }
     }
 }

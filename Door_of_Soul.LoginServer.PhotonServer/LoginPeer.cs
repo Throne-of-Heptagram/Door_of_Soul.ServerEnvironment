@@ -1,18 +1,18 @@
-﻿using Door_of_Soul.Communication.Protocol.External.Device;
-using Door_of_Soul.Communication.ProxyServer;
+﻿using Door_of_Soul.Communication.LoginServer;
+using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
-namespace Door_of_Soul.ProxyServer.PhotonServer
+namespace Door_of_Soul.LoginServer.PhotonServer
 {
-    public class ProxyPeer : ClientPeer
+    public class LoginPeer : ClientPeer
     {
         public TerminalDevice Device { get; private set; }
 
-        public ProxyPeer(InitRequest initRequest) : base(initRequest)
+        public LoginPeer(InitRequest initRequest) : base(initRequest)
         {
             TerminalDevice device;
             if(DeviceFactory.Instance.CreateDevice(SendEvent, SendOperationResponse, out device))
@@ -21,7 +21,7 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
             }
             else
             {
-                throw new Exception("ProxyPeer CreateDevice Fail");
+                throw new Exception("LoginPeer CreateDevice Fail");
             }
         }
 
@@ -38,7 +38,7 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
             string errorMessage;
             if (!CommunicationService.Instance.HandleOperationRequest(Device, operationCode, parameters, out errorMessage))
             {
-                ProxyServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
+                LoginServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
             }
         }
 

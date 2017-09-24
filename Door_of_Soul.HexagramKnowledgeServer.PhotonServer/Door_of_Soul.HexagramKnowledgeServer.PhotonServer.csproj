@@ -92,4 +92,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(ProjectDir)bin\Debug\*.dll W:\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Door_of_Soul.DevelopmentServer\HexagramKnowledgeServer\bin /S /Y /I</PostBuildEvent>
+  </PropertyGroup>
 </Project>

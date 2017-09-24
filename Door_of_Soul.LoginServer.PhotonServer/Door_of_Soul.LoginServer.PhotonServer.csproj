@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B0745BE7-CC0B-499A-B76C-1BB953F84572}</ProjectGuid>
+    <ProjectGuid>{A1241F2D-4378-4D6D-AE55-CF40369BC119}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Door_of_Soul.ProxyServer.PhotonServer</RootNamespace>
-    <AssemblyName>Door_of_Soul.ProxyServer.PhotonServer</AssemblyName>
+    <RootNamespace>Door_of_Soul.LoginServer.PhotonServer</RootNamespace>
+    <AssemblyName>Door_of_Soul.LoginServer.PhotonServer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,28 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Door_of_Soul.Communication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Door_of_Soul.Communication">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.dll</HintPath>
     </Reference>
-    <Reference Include="Door_of_Soul.Communication.Protocol.External, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Door_of_Soul.Communication.LoginServer">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.LoginServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Door_of_Soul.Communication.Protocol.External">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.Protocol.External.dll</HintPath>
     </Reference>
-    <Reference Include="Door_of_Soul.Communication.Protocol.Internal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Door_of_Soul.Communication.Protocol.Internal">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.Protocol.Internal.dll</HintPath>
     </Reference>
-    <Reference Include="Door_of_Soul.Communication.ProxyServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ReferenceDlls\Door_of_Soul.Communication.ProxyServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Door_of_Soul.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Door_of_Soul.Core">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Door_of_Soul.Core.ProxyServer">
-      <HintPath>..\ReferenceDlls\Door_of_Soul.Core.ProxyServer.dll</HintPath>
+    <Reference Include="Door_of_Soul.Core.LoginServer">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.Core.LoginServer.dll</HintPath>
     </Reference>
     <Reference Include="Door_of_Soul.Database">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Database.dll</HintPath>
@@ -62,31 +57,26 @@
     <Reference Include="Door_of_Soul.Database.MariaDb">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Database.MariaDb.dll</HintPath>
     </Reference>
-    <Reference Include="Door_of_Soul.ProxyServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ReferenceDlls\Door_of_Soul.ProxyServer.dll</HintPath>
+    <Reference Include="Door_of_Soul.LoginServer">
+      <HintPath>..\ReferenceDlls\Door_of_Soul.LoginServer.dll</HintPath>
     </Reference>
     <Reference Include="Door_of_Soul.Server">
       <HintPath>..\ReferenceDlls\Door_of_Soul.Server.dll</HintPath>
     </Reference>
-    <Reference Include="ExitGames.Logging.Log4Net, Version=1.0.4.0, Culture=neutral, PublicKeyToken=eac0edd9746a4aa0, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ExitGames.Logging.Log4Net">
       <HintPath>..\ReferenceDlls\ExitGames.Logging.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="ExitGamesLibs, Version=1.0.4.0, Culture=neutral, PublicKeyToken=eac0edd9746a4aa0, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ExitGamesLibs">
       <HintPath>..\ReferenceDlls\ExitGamesLibs.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="log4net">
       <HintPath>..\ReferenceDlls\log4net.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceDlls\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Photon.SocketServer, Version=4.0.28.11245, Culture=neutral, PublicKeyToken=48c2fa3b6988090e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Photon.SocketServer">
       <HintPath>..\ReferenceDlls\Photon.SocketServer.dll</HintPath>
     </Reference>
     <Reference Include="PhotonHostRuntimeInterfaces">
@@ -103,11 +93,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProxyPeer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyServerApplication.cs" />
-    <Compile Include="ProxyServerCommunicationService.cs" />
-    <Compile Include="ProxyServerEnvironment.cs" />
+    <Compile Include="LoginPeer.cs" />
+    <Compile Include="LoginServerApplication.cs" />
+    <Compile Include="LoginServerCommunicationService.cs" />
+    <Compile Include="LoginServerEnvironment.cs" />
     <Compile Include="ServerEnvironmentConfiguration.cs" />
     <Compile Include="ServerPeer.cs" />
   </ItemGroup>
@@ -118,11 +108,10 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(ProjectDir)bin\Debug\*.dll W:\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Door_of_Soul.DevelopmentServer\LoginServer_Wind\bin /S /Y /I
+xcopy $(ProjectDir)bin\Debug\*.dll W:\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Door_of_Soul.DevelopmentServer\LoginServer_Fire\bin /S /Y /I
+xcopy $(ProjectDir)bin\Debug\*.dll W:\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Door_of_Soul.DevelopmentServer\LoginServer_Water\bin /S /Y /I
+xcopy $(ProjectDir)bin\Debug\*.dll W:\Server\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Door_of_Soul.DevelopmentServer\LoginServer_Earth\bin /S /Y /I</PostBuildEvent>
+  </PropertyGroup>
 </Project>

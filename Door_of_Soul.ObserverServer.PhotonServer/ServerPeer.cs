@@ -1,12 +1,12 @@
-﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
-using Door_of_Soul.Communication.ProxyServer;
+﻿using Door_of_Soul.Communication.ObserverServer;
+using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
 using PhotonHostRuntimeInterfaces;
 using System.Collections.Generic;
 
-namespace Door_of_Soul.ProxyServer.PhotonServer
+namespace Door_of_Soul.ObserverServer.PhotonServer
 {
     public class ServerPeer : OutboundS2SPeer
     {
@@ -16,17 +16,17 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
 
         protected override void OnConnectionEstablished(object responseObject)
         {
-            ProxyServerApplication.Log.Info($"Server ConnectionEstablished");
+            ObserverServerApplication.Log.Info($"Server ConnectionEstablished");
         }
 
         protected override void OnConnectionFailed(int errorCode, string errorMessage)
         {
-            ProxyServerApplication.Log.Info($"Server ConnectionFailed");
+            ObserverServerApplication.Log.Info($"Server ConnectionFailed");
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
-            ProxyServerApplication.Log.Info($"Server Disconnect");
+            ObserverServerApplication.Log.Info($"Server Disconnect");
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)
@@ -37,13 +37,13 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
             string errorMessage;
             if (!CommunicationService.Instance.HandleEvent(eventCode, parameters, out errorMessage))
             {
-                ProxyServerApplication.Log.Info($"Event Fail, ErrorMessage: {errorMessage}");
+                ObserverServerApplication.Log.Info($"Event Fail, ErrorMessage: {errorMessage}");
             }
         }
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
         {
-            ProxyServerApplication.Log.Error($"Server OperationRequest");
+            ObserverServerApplication.Log.Error($"Server OperationRequest");
         }
 
         protected override void OnOperationResponse(OperationResponse operationResponse, SendParameters sendParameters)
@@ -56,7 +56,7 @@ namespace Door_of_Soul.ProxyServer.PhotonServer
             string errorMessage;
             if (!CommunicationService.Instance.HandleOperationResponse(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
-                ProxyServerApplication.Log.Info($"OperationResponse Fail, ErrorMessage: {errorMessage}");
+                ObserverServerApplication.Log.Info($"OperationResponse Fail, ErrorMessage: {errorMessage}");
             }
         }
     }

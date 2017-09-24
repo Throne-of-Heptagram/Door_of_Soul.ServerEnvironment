@@ -1,27 +1,27 @@
 ﻿using Door_of_Soul.Communication.Protocol.External.Device;
-using Door_of_Soul.Communication.SceneServer;
+using Door_of_Soul.Communication.TrinityServer;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Door_of_Soul.SceneServer.PhotonServer
+namespace Door_of_Soul.TrinityServer.PhotonServer
 {
-    public class ScenePeer : ClientPeer
+    public class TrinityPeer : ClientPeer
     {
         public TerminalDevice Device { get; private set; }
 
-        public ScenePeer(InitRequest initRequest) : base(initRequest)
+        public TrinityPeer(InitRequest initRequest) : base(initRequest)
         {
             TerminalDevice device;
-            if (DeviceFactory.Instance.CreateDevice(SendEvent, SendOperationResponse, out device))
+            if(DeviceFactory.Instance.CreateDevice(SendEvent, SendOperationResponse, out device))
             {
                 Device = device;
             }
             else
             {
-                throw new Exception("ScenePeer CreateDevice Fail");
+                throw new Exception("TrinityPeer CreateDevice Fail");
             }
         }
 
@@ -38,7 +38,7 @@ namespace Door_of_Soul.SceneServer.PhotonServer
             string errorMessage;
             if (!CommunicationService.Instance.HandleOperationRequest(Device, operationCode, parameters, out errorMessage))
             {
-                SceneServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
+                TrinityServerApplication.Log.Info($"OperationRequest Fail, ErrorMessage: {errorMessage}");
             }
         }
 
