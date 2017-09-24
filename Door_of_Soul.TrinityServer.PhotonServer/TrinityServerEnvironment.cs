@@ -1,25 +1,28 @@
-﻿using Door_of_Soul.Communication.SceneServer;
+﻿using Door_of_Soul.Communication.TrinityServer;
 using Door_of_Soul.Core;
+using Door_of_Soul.Database.Connection;
+using Door_of_Soul.Database.MariaDb.Connection;
+using Door_of_Soul.Database.MariaDb.Repository;
+using Door_of_Soul.Database.Repository;
 using Door_of_Soul.Server;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
 using log4net.Config;
+using MySql.Data.MySqlClient;
 using Photon.SocketServer;
 using System.IO;
-using System.Threading;
 
-namespace Door_of_Soul.SceneServer.PhotonServer
+namespace Door_of_Soul.TrinityServer.PhotonServer
 {
-    class SceneServerEnvironment : ServerEnvironment.ServerEnvironment
+    class TrinityServerEnvironment : ServerEnvironment.ServerEnvironment
     {
         public static ServerPeer ServerPeer { get; private set; }
 
         public override bool SetupCommunication(out string errorMessage)
         {
-            CommunicationService.Initialize(new SceneServerCommunicationService());
+            CommunicationService.Initialize(new TrinityServerCommunicationService());
 
             ServerPeer = new ServerPeer(ApplicationBase.Instance);
-            Thread.Sleep(ServerEnvironmentConfiguration.Instance.SetupConnectionDelay);
             if (!CommunicationService.Instance.ConnectHexagrameEntranceServer(
                 serverAddress: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerPort,
@@ -73,7 +76,7 @@ namespace Door_of_Soul.SceneServer.PhotonServer
 
         public override bool SetupServer(out string errorMessage)
         {
-            ServerInitializer.Initialize(new SceneServerInitializer());
+            ServerInitializer.Initialize(new TrinityServerInitializer());
             return ServerInitializer.Instance.Initialize(out errorMessage);
         }
 
@@ -85,18 +88,28 @@ namespace Door_of_Soul.SceneServer.PhotonServer
 
         private void LogDeviceDisconnected(TerminalDevice device)
         {
-            SceneServerApplication.Log.Info($"Device: {device} disconnected");
+            TrinityServerApplication.Log.Info($"Device: {device} disconnected");
         }
 
         private void LogDeviceConnected(TerminalDevice device)
         {
-            SceneServerApplication.Log.Info($"Device: {device} connected");
+            TrinityServerApplication.Log.Info($"Device: {device} connected");
         }
 
         public override bool SetupDatabase(out string errorMessage)
         {
-            errorMessage = "";
-            return true;
+            ThroneDataConnection<MySqlConnection>.Initialize(new MariaDbThroneDataConnection());
+
+            AnswerRepository.Initialize(new MariaDbAnswerRepository());
+
+            return ThroneDataConnection<MySqlConnection>.Instance.Connect(
+                serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
+                port: ServerEnvironmentConfiguration.Instance.DatabasePort,
+                username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,
+                password: ServerEnvironmentConfiguration.Instance.DatabasePassword,
+                databasePrefix: ServerEnvironmentConfiguration.Instance.DatabasePrefix,
+                charset: ServerEnvironmentConfiguration.Instance.DatabaseCharset,
+                errorMessage: out errorMessage);
         }
     }
 }

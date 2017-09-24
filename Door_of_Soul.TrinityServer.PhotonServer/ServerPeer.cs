@@ -1,63 +1,62 @@
-﻿using Door_of_Soul.Communication.HexagramEntranceServer;
-using Door_of_Soul.Communication.Protocol.Hexagram.Destiny;
+﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
+using Door_of_Soul.Communication.TrinityServer;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
 using PhotonHostRuntimeInterfaces;
 using System.Collections.Generic;
 
-namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
+namespace Door_of_Soul.TrinityServer.PhotonServer
 {
-    class DestinyPeer : OutboundS2SPeer
+    public class ServerPeer : OutboundS2SPeer
     {
-        public DestinyPeer(ApplicationBase application) : base(application)
+        public ServerPeer(ApplicationBase application) : base(application)
         {
-
         }
 
         protected override void OnConnectionEstablished(object responseObject)
         {
-            HexagramEntranceServerApplication.Log.Info($"DestinyServer ConnectionEstablished");
+            TrinityServerApplication.Log.Info($"Server ConnectionEstablished");
         }
 
         protected override void OnConnectionFailed(int errorCode, string errorMessage)
         {
-            HexagramEntranceServerApplication.Log.Info($"DestinyServer ConnectionFailed");
+            TrinityServerApplication.Log.Info($"Server ConnectionFailed");
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
-            HexagramEntranceServerApplication.Log.Info($"DestinyServer Disconnect");
+            TrinityServerApplication.Log.Info($"Server Disconnect");
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)
         {
-            DestinyEventCode eventCode = (DestinyEventCode)eventData.Code;
+            EndPointEventCode eventCode = (EndPointEventCode)eventData.Code;
             Dictionary<byte, object> parameters = eventData.Parameters;
 
             string errorMessage;
-            if (!DestinyCommunicationService.Instance.HandleEvent(eventCode, parameters, out errorMessage))
+            if (!CommunicationService.Instance.HandleEvent(eventCode, parameters, out errorMessage))
             {
-                HexagramEntranceServerApplication.Log.Info($"DestinyServer Event Fail, ErrorMessage: {errorMessage}");
+                TrinityServerApplication.Log.Info($"Event Fail, ErrorMessage: {errorMessage}");
             }
         }
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
         {
-            HexagramEntranceServerApplication.Log.Error($"DestinyServer Server OperationRequest");
+            TrinityServerApplication.Log.Error($"Server OperationRequest");
         }
 
         protected override void OnOperationResponse(OperationResponse operationResponse, SendParameters sendParameters)
         {
-            DestinyOperationCode operationCode = (DestinyOperationCode)operationResponse.OperationCode;
+            EndPointOperationCode operationCode = (EndPointOperationCode)operationResponse.OperationCode;
             OperationReturnCode returnCode = (OperationReturnCode)operationResponse.ReturnCode;
             string operationMessage = operationResponse.DebugMessage;
             Dictionary<byte, object> parameters = operationResponse.Parameters;
 
             string errorMessage;
-            if (!DestinyCommunicationService.Instance.HandleOperationResponse(operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if (!CommunicationService.Instance.HandleOperationResponse(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
-                HexagramEntranceServerApplication.Log.Info($"DestinyServer OperationResponse Fail, ErrorMessage: {errorMessage}");
+                TrinityServerApplication.Log.Info($"OperationResponse Fail, ErrorMessage: {errorMessage}");
             }
         }
     }

@@ -1,10 +1,8 @@
-﻿using Door_of_Soul.Communication.HexagramNodeServer;
+﻿using Door_of_Soul.Communication.LoginServer;
 using Door_of_Soul.Core;
 using Door_of_Soul.Database.Connection;
 using Door_of_Soul.Database.MariaDb.Connection;
-using Door_of_Soul.Database.MariaDb.Relation;
 using Door_of_Soul.Database.MariaDb.Repository;
-using Door_of_Soul.Database.Relation;
 using Door_of_Soul.Database.Repository;
 using Door_of_Soul.Server;
 using ExitGames.Logging;
@@ -14,23 +12,23 @@ using MySql.Data.MySqlClient;
 using Photon.SocketServer;
 using System.IO;
 
-namespace Door_of_Soul.HexagramThroneServer.PhotonServer
+namespace Door_of_Soul.LoginServer.PhotonServer
 {
-    class HexagramThroneServerEnvironment : ServerEnvironment.ServerEnvironment
+    class LoginServerEnvironment : ServerEnvironment.ServerEnvironment
     {
-        public static CentralPeer CentralPeer { get; private set; }
+        public static ServerPeer ServerPeer { get; private set; }
 
         public override bool SetupCommunication(out string errorMessage)
         {
-            CentralCommunicationService.Initialize(new HexagramCentralCommunicationService());
+            CommunicationService.Initialize(new LoginServerCommunicationService());
 
-            CentralPeer = new CentralPeer(ApplicationBase.Instance);
-            if (!CentralCommunicationService.Instance.ConnectHexagrameCentralServer(
-                serverAddress: ServerEnvironmentConfiguration.Instance.HexagramCentralServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.HexagramCentralServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.HexagramCentralServerApplicationName))
+            ServerPeer = new ServerPeer(ApplicationBase.Instance);
+            if (!CommunicationService.Instance.ConnectHexagrameEntranceServer(
+                serverAddress: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerAddress,
+                port: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerPort,
+                applicationName: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerApplicationName))
             {
-                errorMessage = "ConnectHexagrameCentralServer Failed";
+                errorMessage = "ConnectHexagrameEntranceServer Failed";
                 return false;
             }
 
@@ -69,8 +67,8 @@ namespace Door_of_Soul.HexagramThroneServer.PhotonServer
                 return false;
             }
 
-            ThroneHexagramEntranceFactory.Instance.OnSubjectAdded += LogEntranceConnected;
-            ThroneHexagramEntranceFactory.Instance.OnSubjectRemoved += LogEntranceDisconnected;
+            DeviceFactory.Instance.OnSubjectAdded += LogDeviceConnected;
+            DeviceFactory.Instance.OnSubjectRemoved += LogDeviceDisconnected;
 
             errorMessage = "";
             return true;
@@ -78,57 +76,40 @@ namespace Door_of_Soul.HexagramThroneServer.PhotonServer
 
         public override bool SetupServer(out string errorMessage)
         {
-            ServerInitializer.Initialize(new HexagramThroneServerInitializer());
+            ServerInitializer.Initialize(new LoginServerInitializer());
             return ServerInitializer.Instance.Initialize(out errorMessage);
         }
 
         public override void TearDown()
         {
-            ThroneHexagramEntranceFactory.Instance.OnSubjectAdded -= LogEntranceConnected;
-            ThroneHexagramEntranceFactory.Instance.OnSubjectRemoved -= LogEntranceDisconnected;
+            DeviceFactory.Instance.OnSubjectAdded -= LogDeviceConnected;
+            DeviceFactory.Instance.OnSubjectRemoved -= LogDeviceDisconnected;
         }
 
-        private void LogEntranceDisconnected(ThroneHexagramEntrance entrance)
+        private void LogDeviceDisconnected(TerminalDevice device)
         {
-            HexagramThroneServerApplication.Log.Info($"Entrance: {entrance} disconnected");
+            LoginServerApplication.Log.Info($"Device: {device} disconnected");
         }
 
-        private void LogEntranceConnected(ThroneHexagramEntrance entrance)
+        private void LogDeviceConnected(TerminalDevice device)
         {
-            HexagramThroneServerApplication.Log.Info($"Entrance: {entrance} connected");
+            LoginServerApplication.Log.Info($"Device: {device} connected");
         }
 
         public override bool SetupDatabase(out string errorMessage)
         {
             ThroneDataConnection<MySqlConnection>.Initialize(new MariaDbThroneDataConnection());
-            LoveDataConnection<MySqlConnection>.Initialize(new MariaDbLoveDataConnection());
 
             AnswerRepository.Initialize(new MariaDbAnswerRepository());
-            TrinityRelation.Initialize(new MariaDbTrinityRelation());
 
-            if(!ThroneDataConnection<MySqlConnection>.Instance.Connect(
+            return ThroneDataConnection<MySqlConnection>.Instance.Connect(
                 serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.DatabasePort,
                 username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,
                 password: ServerEnvironmentConfiguration.Instance.DatabasePassword,
                 databasePrefix: ServerEnvironmentConfiguration.Instance.DatabasePrefix,
                 charset: ServerEnvironmentConfiguration.Instance.DatabaseCharset,
-                errorMessage: out errorMessage))
-            {
-                return false;
-            }
-            if (!LoveDataConnection<MySqlConnection>.Instance.Connect(
-                serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.DatabasePort,
-                username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,
-                password: ServerEnvironmentConfiguration.Instance.DatabasePassword,
-                databasePrefix: ServerEnvironmentConfiguration.Instance.DatabasePrefix,
-                charset: ServerEnvironmentConfiguration.Instance.DatabaseCharset,
-                errorMessage: out errorMessage))
-            {
-                return false;
-            }
-            return true;
+                errorMessage: out errorMessage);
         }
     }
 }

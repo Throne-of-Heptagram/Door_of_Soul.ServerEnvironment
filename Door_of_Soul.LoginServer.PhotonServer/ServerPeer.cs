@@ -1,12 +1,12 @@
-﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
-using Door_of_Soul.Communication.SceneServer;
+﻿using Door_of_Soul.Communication.LoginServer;
+using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Core.Protocol;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
 using PhotonHostRuntimeInterfaces;
 using System.Collections.Generic;
 
-namespace Door_of_Soul.SceneServer.PhotonServer
+namespace Door_of_Soul.LoginServer.PhotonServer
 {
     public class ServerPeer : OutboundS2SPeer
     {
@@ -16,17 +16,17 @@ namespace Door_of_Soul.SceneServer.PhotonServer
 
         protected override void OnConnectionEstablished(object responseObject)
         {
-            SceneServerApplication.Log.Info($"Server ConnectionEstablished");
+            LoginServerApplication.Log.Info($"Server ConnectionEstablished");
         }
 
         protected override void OnConnectionFailed(int errorCode, string errorMessage)
         {
-            SceneServerApplication.Log.Info($"Server ConnectionFailed");
+            LoginServerApplication.Log.Info($"Server ConnectionFailed");
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
-            SceneServerApplication.Log.Info($"Server Disconnect");
+            LoginServerApplication.Log.Info($"Server Disconnect");
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)
@@ -37,13 +37,13 @@ namespace Door_of_Soul.SceneServer.PhotonServer
             string errorMessage;
             if (!CommunicationService.Instance.HandleEvent(eventCode, parameters, out errorMessage))
             {
-                SceneServerApplication.Log.Info($"Event Fail, ErrorMessage: {errorMessage}");
+                LoginServerApplication.Log.Info($"Event Fail, ErrorMessage: {errorMessage}");
             }
         }
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
         {
-            SceneServerApplication.Log.Error($"Server OperationRequest");
+            LoginServerApplication.Log.Error($"Server OperationRequest");
         }
 
         protected override void OnOperationResponse(OperationResponse operationResponse, SendParameters sendParameters)
@@ -56,7 +56,7 @@ namespace Door_of_Soul.SceneServer.PhotonServer
             string errorMessage;
             if (!CommunicationService.Instance.HandleOperationResponse(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
-                SceneServerApplication.Log.Info($"OperationResponse Fail, ErrorMessage: {errorMessage}");
+                LoginServerApplication.Log.Info($"OperationResponse Fail, ErrorMessage: {errorMessage}");
             }
         }
     }

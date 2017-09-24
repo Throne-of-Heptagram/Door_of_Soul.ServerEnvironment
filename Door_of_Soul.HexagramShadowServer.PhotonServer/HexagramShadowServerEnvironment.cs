@@ -6,7 +6,6 @@ using ExitGames.Logging.Log4Net;
 using log4net.Config;
 using Photon.SocketServer;
 using System.IO;
-using System.Threading;
 
 namespace Door_of_Soul.HexagramShadowServer.PhotonServer
 {
@@ -19,7 +18,6 @@ namespace Door_of_Soul.HexagramShadowServer.PhotonServer
             CentralCommunicationService.Initialize(new HexagramCentralCommunicationService());
 
             CentralPeer = new CentralPeer(ApplicationBase.Instance);
-            Thread.Sleep(ServerEnvironmentConfiguration.Instance.SetupConnectionDelay);
             if (!CentralCommunicationService.Instance.ConnectHexagrameCentralServer(
                 serverAddress: ServerEnvironmentConfiguration.Instance.HexagramCentralServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HexagramCentralServerPort,

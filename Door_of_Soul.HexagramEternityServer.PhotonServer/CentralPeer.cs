@@ -4,6 +4,7 @@ using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
 using PhotonHostRuntimeInterfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Door_of_Soul.HexagramEternityServer.PhotonServer
 {
@@ -26,6 +27,12 @@ namespace Door_of_Soul.HexagramEternityServer.PhotonServer
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
             HexagramEternityServerApplication.Log.Info($"Server Disconnect");
+            Task.Run(async () =>
+            {
+                await Task.Delay(10000);
+                string errorMessage;
+                ServerEnvironment.ServerEnvironment.Instance.SetupCommunication(out errorMessage);
+            });
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)

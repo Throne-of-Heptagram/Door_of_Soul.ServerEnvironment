@@ -13,11 +13,14 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
             EndPointType endPointType;
             switch (initRequest.LocalPort)
             {
-                case int port when port == ServerEnvironmentConfiguration.Instance.ProxyServerListenPort:
-                    endPointType = EndPointType.ProxyServer;
+                case int port when port == ServerEnvironmentConfiguration.Instance.LoginServerListenPort:
+                    endPointType = EndPointType.LoginServer;
                     break;
-                case int port when port == ServerEnvironmentConfiguration.Instance.SceneServerListenPort:
-                    endPointType = EndPointType.SceneServer;
+                case int port when port == ServerEnvironmentConfiguration.Instance.TrinityServerListenPort:
+                    endPointType = EndPointType.TrinityServer;
+                    break;
+                case int port when port == ServerEnvironmentConfiguration.Instance.ObserverServerListenPort:
+                    endPointType = EndPointType.ObserverServer;
                     break;
                 default:
                     throw new System.NotSupportedException();

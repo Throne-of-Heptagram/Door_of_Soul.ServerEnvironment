@@ -8,8 +8,9 @@
             Instance = instance;
         }
 
-        public int ProxyServerListenPort { get; set; } = 10025;
-        public int SceneServerListenPort { get; set; } = 10026;
+        public int LoginServerListenPort { get; set; } = 10025;
+        public int TrinityServerListenPort { get; set; } = 10026;
+        public int ObserverServerListenPort { get; set; } = 10027;
 
         public string KnowledgeServerAddress { get; set; } = "127.0.0.1";
         public string LifeServerAddress { get; set; } = "127.0.0.1";
@@ -49,8 +50,6 @@
         public string EternityServerApplicationName { get; set; } = "Eternity";
         public string DestinyServerApplicationName { get; set; } = "Destiny";
         public string ThroneServerApplicationName { get; set; } = "Throne";
-
-        public int SetupConnectionDelay { get; set; } = 7500;
 
         public string DatabaseServerAddress { get; set; } = "127.0.0.1";
         public int DatabasePort { get; set; } = 10000;
