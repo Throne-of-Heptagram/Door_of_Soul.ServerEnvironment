@@ -16,8 +16,9 @@ namespace Door_of_Soul.HexagramWillServer.PhotonServer
 
         public WillPeer(InitRequest initRequest) : base(initRequest)
         {
+            int hexagramEntranceId = (int)initRequest.InitObject;
             WillHexagramEntrance entrance;
-            if (WillHexagramEntranceFactory.Instance.CreateEntrance(SendEvent, SendOperationResponse, out entrance))
+            if (WillHexagramEntranceFactory.Instance.CreateEntrance(hexagramEntranceId, SendEvent, SendOperationResponse, out entrance))
             {
                 Entrance = entrance;
             }

@@ -16,8 +16,9 @@ namespace Door_of_Soul.HexagramEternityServer.PhotonServer
 
         public EternityPeer(InitRequest initRequest) : base(initRequest)
         {
+            int hexagramEntranceId = (int)initRequest.InitObject;
             EternityHexagramEntrance entrance;
-            if (EternityHexagramEntranceFactory.Instance.CreateEntrance(SendEvent, SendOperationResponse, out entrance))
+            if (EternityHexagramEntranceFactory.Instance.CreateEntrance(hexagramEntranceId, SendEvent, SendOperationResponse, out entrance))
             {
                 Entrance = entrance;
             }

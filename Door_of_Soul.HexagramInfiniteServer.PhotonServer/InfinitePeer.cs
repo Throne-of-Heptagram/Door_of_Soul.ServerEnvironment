@@ -16,8 +16,9 @@ namespace Door_of_Soul.HexagramInfiniteServer.PhotonServer
 
         public InfinitePeer(InitRequest initRequest) : base(initRequest)
         {
+            int hexagramEntranceId = (int)initRequest.InitObject;
             InfiniteHexagramEntrance entrance;
-            if (InfiniteHexagramEntranceFactory.Instance.CreateEntrance(SendEvent, SendOperationResponse, out entrance))
+            if (InfiniteHexagramEntranceFactory.Instance.CreateEntrance(hexagramEntranceId, SendEvent, SendOperationResponse, out entrance))
             {
                 Entrance = entrance;
             }

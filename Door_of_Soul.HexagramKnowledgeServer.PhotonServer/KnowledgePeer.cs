@@ -16,8 +16,9 @@ namespace Door_of_Soul.HexagramKnowledgeServer.PhotonServer
 
         public KnowledgePeer(InitRequest initRequest) : base(initRequest)
         {
+            int hexagramEntranceId = (int)initRequest.InitObject;
             KnowledgeHexagramEntrance entrance;
-            if (KnowledgeHexagramEntranceFactory.Instance.CreateEntrance(SendEvent, SendOperationResponse, out entrance))
+            if (KnowledgeHexagramEntranceFactory.Instance.CreateEntrance(hexagramEntranceId, SendEvent, SendOperationResponse, out entrance))
             {
                 Entrance = entrance;
             }

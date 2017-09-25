@@ -8,9 +8,9 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
 {
     class HexagramEntranceServerLoveCommunicationService : LoveCommunicationService
     {
-        public override bool ConnectServer(string serverAddress, int port, string applicationName)
+        public override bool ConnectServer(int hexagramEntranceId, string serverAddress, int port, string applicationName)
         {
-            return HexagramEntranceServerEnvironment.LovePeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName);
+            return HexagramEntranceServerEnvironment.LovePeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName, hexagramEntranceId);
         }
 
         public override void DisconnectServer()

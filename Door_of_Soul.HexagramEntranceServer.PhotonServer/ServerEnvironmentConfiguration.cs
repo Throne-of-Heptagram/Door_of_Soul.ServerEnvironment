@@ -8,6 +8,8 @@
             Instance = instance;
         }
 
+        public int HexagramEntranceId { get; set; } = 1;
+
         public int LoginServerListenPort { get; set; } = 10025;
         public int TrinityServerListenPort { get; set; } = 10026;
         public int ObserverServerListenPort { get; set; } = 10027;

@@ -59,6 +59,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
             ThronePeer = new ThronePeer(ApplicationBase.Instance);
 
             if (!KnowledgeCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.KnowledgeServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.KnowledgeServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.KnowledgeServerApplicationName))
@@ -67,6 +68,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!LifeCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.LifeServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.LifeServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.LifeServerApplicationName))
@@ -75,6 +77,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!ElementCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.ElementServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.ElementServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.ElementServerApplicationName))
@@ -83,6 +86,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!InfiniteCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.InfiniteServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.InfiniteServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.InfiniteServerApplicationName))
@@ -91,6 +95,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!LoveCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.LoveServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.LoveServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.LoveServerApplicationName))
@@ -99,6 +104,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!SpaceCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.SpaceServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.SpaceServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.SpaceServerApplicationName))
@@ -107,6 +113,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!WillCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.WillServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.WillServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.KnowledgeServerApplicationName))
@@ -115,6 +122,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!ShadowCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.ShadowServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.ShadowServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.ShadowServerApplicationName))
@@ -123,6 +131,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!HistoryCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.HistoryServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HistoryServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.HistoryServerApplicationName))
@@ -131,6 +140,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!EternityCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.EternityServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.EternityServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.EternityServerApplicationName))
@@ -139,6 +149,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!DestinyCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.DestinyServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.DestinyServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.DestinyServerApplicationName))
@@ -147,6 +158,7 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
                 return false;
             }
             if (!ThroneCommunicationService.Instance.ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
                 serverAddress: ServerEnvironmentConfiguration.Instance.ThroneServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.ThroneServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.ThroneServerApplicationName))

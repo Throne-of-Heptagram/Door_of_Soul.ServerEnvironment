@@ -16,8 +16,9 @@ namespace Door_of_Soul.HexagramThroneServer.PhotonServer
 
         public ThronePeer(InitRequest initRequest) : base(initRequest)
         {
+            int hexagramEntranceId = (int)initRequest.InitObject;
             ThroneHexagramEntrance entrance;
-            if (ThroneHexagramEntranceFactory.Instance.CreateEntrance(SendEvent, SendOperationResponse, out entrance))
+            if (ThroneHexagramEntranceFactory.Instance.CreateEntrance(hexagramEntranceId, SendEvent, SendOperationResponse, out entrance))
             {
                 Entrance = entrance;
             }

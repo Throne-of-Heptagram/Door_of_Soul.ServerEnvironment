@@ -16,8 +16,9 @@ namespace Door_of_Soul.HexagramShadowServer.PhotonServer
 
         public ShadowPeer(InitRequest initRequest) : base(initRequest)
         {
+            int hexagramEntranceId = (int)initRequest.InitObject;
             ShadowHexagramEntrance entrance;
-            if (ShadowHexagramEntranceFactory.Instance.CreateEntrance(SendEvent, SendOperationResponse, out entrance))
+            if (ShadowHexagramEntranceFactory.Instance.CreateEntrance(hexagramEntranceId, SendEvent, SendOperationResponse, out entrance))
             {
                 Entrance = entrance;
             }

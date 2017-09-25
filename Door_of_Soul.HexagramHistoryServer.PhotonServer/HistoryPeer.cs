@@ -16,8 +16,9 @@ namespace Door_of_Soul.HexagramHistoryServer.PhotonServer
 
         public HistoryPeer(InitRequest initRequest) : base(initRequest)
         {
+            int hexagramEntranceId = (int)initRequest.InitObject;
             HistoryHexagramEntrance entrance;
-            if (HistoryHexagramEntranceFactory.Instance.CreateEntrance(SendEvent, SendOperationResponse, out entrance))
+            if (HistoryHexagramEntranceFactory.Instance.CreateEntrance(hexagramEntranceId, SendEvent, SendOperationResponse, out entrance))
             {
                 Entrance = entrance;
             }
