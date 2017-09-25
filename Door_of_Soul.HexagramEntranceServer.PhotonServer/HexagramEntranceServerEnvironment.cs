@@ -2,14 +2,15 @@
 using Door_of_Soul.Core;
 using Door_of_Soul.Database.Connection;
 using Door_of_Soul.Database.MariaDb.Connection;
-using Door_of_Soul.Database.MariaDb.Repository;
-using Door_of_Soul.Database.Repository;
+using Door_of_Soul.Database.MariaDb.Repository.Throne;
+using Door_of_Soul.Database.Repository.Throne;
 using Door_of_Soul.Server;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
 using log4net.Config;
 using MySql.Data.MySqlClient;
 using Photon.SocketServer;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
@@ -28,6 +29,27 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
         public static EternityPeer EternityPeer { get; private set; }
         public static DestinyPeer DestinyPeer { get; private set; }
         public static ThronePeer ThronePeer { get; private set; }
+
+        private static Dictionary<HexagramNodeServerType, HexagramCommunicationService> nodeServiceDictionary = new Dictionary<HexagramNodeServerType, HexagramCommunicationService>();
+
+        public static bool ConnectHexagrameNodeServer(HexagramNodeServerType nodeServerType, out string errorMessage)
+        {
+            int nodeServerIndex = (int)nodeServerType;
+            if (nodeServiceDictionary[nodeServerType].ConnectServer(
+                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
+                serverAddress: ServerEnvironmentConfiguration.Instance.HexagramNodeServerAddresses[nodeServerIndex],
+                port: ServerEnvironmentConfiguration.Instance.HexagramNodeServerPorts[nodeServerIndex],
+                applicationName: ServerEnvironmentConfiguration.Instance.HexagramNodeServerApplicationNames[nodeServerIndex]))
+            {
+                errorMessage = "";
+                return true;
+            }
+            else
+            {
+                errorMessage = $"ConnectHexagrame{nodeServerType}Server Failed";
+                return false;
+            }
+        }
 
         public override bool SetupCommunication(out string errorMessage)
         {
@@ -58,118 +80,30 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
             DestinyPeer = new DestinyPeer(ApplicationBase.Instance);
             ThronePeer = new ThronePeer(ApplicationBase.Instance);
 
-            if (!KnowledgeCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.KnowledgeServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.KnowledgeServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.KnowledgeServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameKnowledgeServer Failed";
-                return false;
-            }
-            if (!LifeCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.LifeServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.LifeServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.LifeServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameLifeServer Failed";
-                return false;
-            }
-            if (!ElementCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.ElementServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.ElementServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.ElementServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameElementServer Failed";
-                return false;
-            }
-            if (!InfiniteCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.InfiniteServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.InfiniteServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.InfiniteServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameInfiniteServer Failed";
-                return false;
-            }
-            if (!LoveCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.LoveServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.LoveServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.LoveServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameLoveServer Failed";
-                return false;
-            }
-            if (!SpaceCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.SpaceServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.SpaceServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.SpaceServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameSpaceServer Failed";
-                return false;
-            }
-            if (!WillCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.WillServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.WillServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.KnowledgeServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameKnowledgeServer Failed";
-                return false;
-            }
-            if (!ShadowCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.ShadowServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.ShadowServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.ShadowServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameShadowServer Failed";
-                return false;
-            }
-            if (!HistoryCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.HistoryServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.HistoryServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.HistoryServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameHistoryServer Failed";
-                return false;
-            }
-            if (!EternityCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.EternityServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.EternityServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.EternityServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameEternityServer Failed";
-                return false;
-            }
-            if (!DestinyCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.DestinyServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.DestinyServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.DestinyServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameDestinyServer Failed";
-                return false;
-            }
-            if (!ThroneCommunicationService.Instance.ConnectServer(
-                hexagramEntranceId: ServerEnvironmentConfiguration.Instance.HexagramEntranceId,
-                serverAddress: ServerEnvironmentConfiguration.Instance.ThroneServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.ThroneServerPort,
-                applicationName: ServerEnvironmentConfiguration.Instance.ThroneServerApplicationName))
-            {
-                errorMessage = "ConnectHexagrameThroneServer Failed";
-                return false;
-            }
+            nodeServiceDictionary.Add(HexagramNodeServerType.Knowledge, KnowledgeCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Life, LifeCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Element, ElementCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Infinite, InfiniteCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Love, LoveCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Space, SpaceCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Will, WillCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Shadow, ShadowCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.History, HistoryCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Eternity, EternityCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Destiny, DestinyCommunicationService.Instance);
+            nodeServiceDictionary.Add(HexagramNodeServerType.Throne, ThroneCommunicationService.Instance);
 
+            foreach(var pair in nodeServiceDictionary)
+            {
+                if (!ConnectHexagrameNodeServer(pair.Key, out errorMessage))
+                {
+                    return false;
+                }
+            }
             errorMessage = "";
             return true;
         }
+        
 
         public override bool SetupConfiguration(out string errorMessage)
         {

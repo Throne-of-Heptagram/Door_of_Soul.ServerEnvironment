@@ -33,6 +33,12 @@ namespace Door_of_Soul.HexagramWillServer.PhotonServer
                 string errorMessage;
                 ServerEnvironment.ServerEnvironment.Instance.SetupCommunication(out errorMessage);
             });
+            Task.Run(async () =>
+            {
+                await Task.Delay(ServerEnvironmentConfiguration.Instance.HexagramCentralServerReconnectDelayMillisecond);
+                string errorMessage;
+                HexagramWillServerEnvironment.ConnectHexagrameCentralServer(out errorMessage);
+            });
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)

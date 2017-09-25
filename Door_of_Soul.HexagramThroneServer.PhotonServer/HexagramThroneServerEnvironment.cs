@@ -2,10 +2,10 @@
 using Door_of_Soul.Core;
 using Door_of_Soul.Database.Connection;
 using Door_of_Soul.Database.MariaDb.Connection;
-using Door_of_Soul.Database.MariaDb.Relation;
-using Door_of_Soul.Database.MariaDb.Repository;
-using Door_of_Soul.Database.Relation;
-using Door_of_Soul.Database.Repository;
+using Door_of_Soul.Database.MariaDb.Relation.Throne;
+using Door_of_Soul.Database.MariaDb.Repository.Throne;
+using Door_of_Soul.Database.Relation.Throne;
+using Door_of_Soul.Database.Repository.Throne;
 using Door_of_Soul.Server;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
@@ -19,23 +19,28 @@ namespace Door_of_Soul.HexagramThroneServer.PhotonServer
     class HexagramThroneServerEnvironment : ServerEnvironment.ServerEnvironment
     {
         public static CentralPeer CentralPeer { get; private set; }
-
-        public override bool SetupCommunication(out string errorMessage)
+        public static bool ConnectHexagrameCentralServer(out string errorMessage)
         {
-            CentralCommunicationService.Initialize(new HexagramCentralCommunicationService());
-
-            CentralPeer = new CentralPeer(ApplicationBase.Instance);
-            if (!CentralCommunicationService.Instance.ConnectHexagrameCentralServer(
+            if (CentralCommunicationService.Instance.ConnectHexagrameCentralServer(
                 serverAddress: ServerEnvironmentConfiguration.Instance.HexagramCentralServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HexagramCentralServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.HexagramCentralServerApplicationName))
             {
+                errorMessage = "";
+                return true;
+            }
+            else
+            {
                 errorMessage = "ConnectHexagrameCentralServer Failed";
                 return false;
             }
+        }
 
-            errorMessage = "";
-            return true;
+        public override bool SetupCommunication(out string errorMessage)
+        {
+            CentralCommunicationService.Initialize(new HexagramCentralCommunicationService());
+            CentralPeer = new CentralPeer(ApplicationBase.Instance);
+            return ConnectHexagrameCentralServer(out errorMessage);
         }
 
         public override bool SetupConfiguration(out string errorMessage)
@@ -101,23 +106,11 @@ namespace Door_of_Soul.HexagramThroneServer.PhotonServer
         public override bool SetupDatabase(out string errorMessage)
         {
             ThroneDataConnection<MySqlConnection>.Initialize(new MariaDbThroneDataConnection());
-            LoveDataConnection<MySqlConnection>.Initialize(new MariaDbLoveDataConnection());
 
             AnswerRepository.Initialize(new MariaDbAnswerRepository());
             TrinityRelation.Initialize(new MariaDbTrinityRelation());
 
             if(!ThroneDataConnection<MySqlConnection>.Instance.Connect(
-                serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
-                port: ServerEnvironmentConfiguration.Instance.DatabasePort,
-                username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,
-                password: ServerEnvironmentConfiguration.Instance.DatabasePassword,
-                databasePrefix: ServerEnvironmentConfiguration.Instance.DatabasePrefix,
-                charset: ServerEnvironmentConfiguration.Instance.DatabaseCharset,
-                errorMessage: out errorMessage))
-            {
-                return false;
-            }
-            if (!LoveDataConnection<MySqlConnection>.Instance.Connect(
                 serverAddress: ServerEnvironmentConfiguration.Instance.DatabaseServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.DatabasePort,
                 username: ServerEnvironmentConfiguration.Instance.DatabaseUsername,

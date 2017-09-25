@@ -2,8 +2,8 @@
 using Door_of_Soul.Core;
 using Door_of_Soul.Database.Connection;
 using Door_of_Soul.Database.MariaDb.Connection;
-using Door_of_Soul.Database.MariaDb.Repository;
-using Door_of_Soul.Database.Repository;
+using Door_of_Soul.Database.MariaDb.Repository.Throne;
+using Door_of_Soul.Database.Repository.Throne;
 using Door_of_Soul.Server;
 using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;

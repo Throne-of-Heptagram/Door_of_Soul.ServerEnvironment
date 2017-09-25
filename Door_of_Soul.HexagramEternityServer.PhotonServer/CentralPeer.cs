@@ -29,9 +29,9 @@ namespace Door_of_Soul.HexagramEternityServer.PhotonServer
             HexagramEternityServerApplication.Log.Info($"Server Disconnect");
             Task.Run(async () =>
             {
-                await Task.Delay(10000);
+                await Task.Delay(ServerEnvironmentConfiguration.Instance.HexagramCentralServerReconnectDelayMillisecond);
                 string errorMessage;
-                ServerEnvironment.ServerEnvironment.Instance.SetupCommunication(out errorMessage);
+                HexagramEternityServerEnvironment.ConnectHexagrameCentralServer(out errorMessage);
             });
         }
 

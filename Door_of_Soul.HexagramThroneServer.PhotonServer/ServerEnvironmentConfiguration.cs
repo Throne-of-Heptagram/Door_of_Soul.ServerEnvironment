@@ -12,6 +12,8 @@
         public int HexagramCentralServerPort { get; set; } = 10012;
         public string HexagramCentralServerApplicationName { get; set; } = "HexagramCentral";
 
+        public int HexagramCentralServerReconnectDelayMillisecond { get; set; } = 10000;
+
         public string DatabaseServerAddress { get; set; } = "127.0.0.1";
         public int DatabasePort { get; set; } = 10000;
         public string DatabaseUsername { get; set; } = "";

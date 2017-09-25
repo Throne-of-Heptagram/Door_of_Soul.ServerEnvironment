@@ -12,23 +12,28 @@ namespace Door_of_Soul.HexagramInfiniteServer.PhotonServer
     class HexagramInfiniteServerEnvironment : ServerEnvironment.ServerEnvironment
     {
         public static CentralPeer CentralPeer { get; private set; }
-
-        public override bool SetupCommunication(out string errorMessage)
+        public static bool ConnectHexagrameCentralServer(out string errorMessage)
         {
-            CentralCommunicationService.Initialize(new HexagramCentralCommunicationService());
-
-            CentralPeer = new CentralPeer(ApplicationBase.Instance);
-            if (!CentralCommunicationService.Instance.ConnectHexagrameCentralServer(
+            if (CentralCommunicationService.Instance.ConnectHexagrameCentralServer(
                 serverAddress: ServerEnvironmentConfiguration.Instance.HexagramCentralServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HexagramCentralServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.HexagramCentralServerApplicationName))
             {
+                errorMessage = "";
+                return true;
+            }
+            else
+            {
                 errorMessage = "ConnectHexagrameCentralServer Failed";
                 return false;
             }
+        }
 
-            errorMessage = "";
-            return true;
+        public override bool SetupCommunication(out string errorMessage)
+        {
+            CentralCommunicationService.Initialize(new HexagramCentralCommunicationService());
+            CentralPeer = new CentralPeer(ApplicationBase.Instance);
+            return ConnectHexagrameCentralServer(out errorMessage);
         }
 
         public override bool SetupConfiguration(out string errorMessage)
