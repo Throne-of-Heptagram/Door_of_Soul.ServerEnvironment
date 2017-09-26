@@ -24,7 +24,7 @@ namespace Door_of_Soul.HexagramLoveServer.PhotonServer
             }
             else
             {
-                throw new Exception("LovePeer CreateDevice Fail");
+                throw new Exception("LovePeer CreateEntrance Fail");
             }
         }
 

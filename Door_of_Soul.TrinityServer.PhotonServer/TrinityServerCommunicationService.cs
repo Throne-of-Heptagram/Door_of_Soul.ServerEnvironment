@@ -10,7 +10,7 @@ namespace Door_of_Soul.TrinityServer.PhotonServer
     {
         public override bool ConnectHexagrameEntranceServer(string serverAddress, int port, string applicationName)
         {
-            return TrinityServerEnvironment.ServerPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName);
+            return TrinityServerEnvironment.ServerPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName, ServerEnvironmentConfiguration.Instance.EndPointId);
         }
 
         public override void DisconnectHexagrameEntranceServer()

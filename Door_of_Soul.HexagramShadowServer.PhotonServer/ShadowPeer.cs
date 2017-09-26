@@ -24,7 +24,7 @@ namespace Door_of_Soul.HexagramShadowServer.PhotonServer
             }
             else
             {
-                throw new Exception("ShadowPeer CreateDevice Fail");
+                throw new Exception("ShadowPeer CreateEntrance Fail");
             }
         }
 

@@ -10,7 +10,7 @@ namespace Door_of_Soul.LoginServer.PhotonServer
     {
         public override bool ConnectHexagrameEntranceServer(string serverAddress, int port, string applicationName)
         {
-            return LoginServerEnvironment.ServerPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName);
+            return LoginServerEnvironment.ServerPeer.ConnectTcp(new IPEndPoint(IPAddress.Parse(serverAddress), port), applicationName, ServerEnvironmentConfiguration.Instance.EndPointId);
         }
 
         public override void DisconnectHexagrameEntranceServer()

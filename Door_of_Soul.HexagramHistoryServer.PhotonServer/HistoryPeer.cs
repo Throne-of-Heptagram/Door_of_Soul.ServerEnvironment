@@ -24,7 +24,7 @@ namespace Door_of_Soul.HexagramHistoryServer.PhotonServer
             }
             else
             {
-                throw new Exception("HistoryPeer CreateDevice Fail");
+                throw new Exception("HistoryPeer CreateEntrance Fail");
             }
         }
 

@@ -24,7 +24,7 @@ namespace Door_of_Soul.HexagramEternityServer.PhotonServer
             }
             else
             {
-                throw new Exception("EternityPeer CreateDevice Fail");
+                throw new Exception("EternityPeer CreateEntrance Fail");
             }
         }
 

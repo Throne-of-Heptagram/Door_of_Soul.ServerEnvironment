@@ -24,7 +24,7 @@ namespace Door_of_Soul.HexagramKnowledgeServer.PhotonServer
             }
             else
             {
-                throw new Exception("KnowledgePeer CreateDevice Fail");
+                throw new Exception("KnowledgePeer CreateEntrance Fail");
             }
         }
 

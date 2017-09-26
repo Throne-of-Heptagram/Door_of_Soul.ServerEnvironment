@@ -24,7 +24,7 @@ namespace Door_of_Soul.HexagramInfiniteServer.PhotonServer
             }
             else
             {
-                throw new Exception("InfinitePeer CreateDevice Fail");
+                throw new Exception("InfinitePeer CreateEntrance Fail");
             }
         }
 

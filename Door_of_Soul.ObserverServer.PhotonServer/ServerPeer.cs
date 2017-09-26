@@ -5,6 +5,7 @@ using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
 using PhotonHostRuntimeInterfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Door_of_Soul.ObserverServer.PhotonServer
 {
@@ -27,6 +28,12 @@ namespace Door_of_Soul.ObserverServer.PhotonServer
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
             ObserverServerApplication.Log.Info($"Server Disconnect");
+            Task.Run(async () =>
+            {
+                await Task.Delay(ServerEnvironmentConfiguration.Instance.HexagramEntranceServerReconnectDelayMillisecond);
+                string errorMessage;
+                ObserverServerEnvironment.ConnectHexagrameEntranceServer(out errorMessage);
+            });
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)

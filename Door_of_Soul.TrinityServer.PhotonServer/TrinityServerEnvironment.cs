@@ -17,23 +17,28 @@ namespace Door_of_Soul.TrinityServer.PhotonServer
     class TrinityServerEnvironment : ServerEnvironment.ServerEnvironment
     {
         public static ServerPeer ServerPeer { get; private set; }
-
-        public override bool SetupCommunication(out string errorMessage)
+        public static bool ConnectHexagrameEntranceServer(out string errorMessage)
         {
-            CommunicationService.Initialize(new TrinityServerCommunicationService());
-
-            ServerPeer = new ServerPeer(ApplicationBase.Instance);
-            if (!CommunicationService.Instance.ConnectHexagrameEntranceServer(
+            if (CommunicationService.Instance.ConnectHexagrameEntranceServer(
                 serverAddress: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerAddress,
                 port: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerPort,
                 applicationName: ServerEnvironmentConfiguration.Instance.HexagramEntranceServerApplicationName))
             {
+                errorMessage = "";
+                return true;
+            }
+            else
+            {
                 errorMessage = "ConnectHexagrameEntranceServer Failed";
                 return false;
             }
+        }
 
-            errorMessage = "";
-            return true;
+        public override bool SetupCommunication(out string errorMessage)
+        {
+            CommunicationService.Initialize(new TrinityServerCommunicationService());
+            ServerPeer = new ServerPeer(ApplicationBase.Instance);
+            return ConnectHexagrameEntranceServer(out errorMessage);
         }
 
         public override bool SetupConfiguration(out string errorMessage)

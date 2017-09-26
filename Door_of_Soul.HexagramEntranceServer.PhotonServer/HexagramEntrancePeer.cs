@@ -15,15 +15,16 @@ namespace Door_of_Soul.HexagramEntranceServer.PhotonServer
 
         public HexagramEntrancePeer(InitRequest initRequest, EndPointType endPointType) : base(initRequest)
         {
+            int endPointId = (int)initRequest.InitObject;
+
             TerminalEndPoint endPoint;
-            
-            if (EndPointFactory.Instance.CreateEndPoint(endPointType, SendEvent, SendOperationResponse, out endPoint))
+            if (EndPointFactory.Instance.CreateEndPoint(endPointId, endPointType, SendEvent, SendOperationResponse, out endPoint))
             {
                 EndPoint = endPoint;
             }
             else
             {
-                throw new Exception("HexagramEntrancePeer CreateEndPoint Fail");
+                throw new Exception($"HexagramEntrancePeer CreateEndPoint Fail EndPointId:{endPointId}");
             }
         }
 
